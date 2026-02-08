@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para Sofi ✨</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typewriter-effect/2.18.2/core.js"></script>
+    <style>
+        :root {
+            --azul-suave: #a2d2ff;
+            --blanco-cristal: rgba(255, 255, 255, 0.15);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #0b132b; /* Fondo azul noche profundo */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+
+        /* Fondo de Estrellas */
+        #star-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        /* Contenedor Principal */
+        .container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--azul-suave);
+            text-shadow: 0 0 10px rgba(162, 210, 255, 0.5);
+        }
+
+        #typewriter {
+            font-size: 1rem;
+            height: 3rem; /* Evita que el layout salte */
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* Grid de Botones */
+        .grid {
+            width: 100%;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--blanco-cristal);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 25px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Efecto al tocar en móvil */
+        .card:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: var(--azul-suave);
+        }
+
+        .icon {
+            font-size: 1.5rem;
+        }
+
+        .locked {
+            opacity: 0.5;
+            filter: grayscale(1);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="star-canvas"></canvas>
+
+    <div class="container">
+        <h1>Hola, Sofi ✨</h1>
+        <div id="typewriter"></div>
+
+        <div class="grid">
+            <a href="https://TU_USUARIO.github.io/TU_REPO_GALAXIA" class="card">
+                <span>Ver MI Galaxia</span>
+                <span class="icon">🌌</span>
+            </a>
+
+            <a href="https://TU_USUARIO.github.io/TU_REPO_FORTUNA" class="card">
+                <span>Descubrir MI Suerte</span>
+                <span class="icon">🔮</span>
+            </a>
+
+            <a href="#" class="card locked">
+                <span>Nuestra Música (Próximamente)</span>
+                <span class="icon">🎵</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // --- EFECTO MÁQUINA DE ESCRIBIR ---
+        const tw = document.getElementById('typewriter');
+        const typewriter = new Typewriter(tw, {
+            loop: true,
+            delay: 75,
+        });
+
+        typewriter
+            .typeString('Bienvenida a tus universos personales...')
+            .pauseFor(2000)
+            .deleteAll()
+            .typeString('¿Qué quieres explorar hoy?')
+            .pauseFor(2000)
+            .start();
+
+        // --- FONDO DE ESTRELLAS INTERACTIVO ---
+        const canvas = document.getElementById('star-canvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Star {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(162, 210, 255, 0.8)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 100; i++) stars.push(new Star());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                star.update();
+                star.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Interacción simple al toque
+        window.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            stars.push(new Star()); // Añade una estrella donde toca
+            stars.shift(); // Quita la más vieja para no saturar
+            stars[stars.length-1].x = touch.clientX;
+            stars[stars.length-1].y = touch.clientY;
+        });
+    </script>
+</body>
+</html>
