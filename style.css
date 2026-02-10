@@ -12,6 +12,8 @@ body {
     overflow: hidden; 
     background-color: var(--bg-color);
     color: white;
+    /* Evita el zoom en móviles al hacer doble tap */
+    touch-action: manipulation;
 }
 
 /* === PANTALLA DE INICIO === */
@@ -90,7 +92,7 @@ body {
     border-radius: 4px;
 }
 
-/* === VENTANAS FLOTANTES === */
+/* === VENTANAS FLOTANTES (Estándar) === */
 .retro-window {
     position: absolute;
     top: 50%; left: 50%;
@@ -132,34 +134,66 @@ body {
     overflow-y: auto; 
 }
 
-/* === ESTILOS ESPECIALES PARA LA CARTA === */
+/* === ESTILOS ESPECIALES PARA LA CARTA PANTALLA COMPLETA === */
 
-/* 1. Fondo GIF animado */
+/* 1. Ventana de Pantalla Completa */
+.full-screen-window {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+/* 2. Fondo GIF animado */
 .gif-bg {
     /* CAMBIA ESTO POR TU GIF DE ESTRELLAS/CORAZONES */
     background: url('assets/fondo-carta.gif') no-repeat center center;
     background-size: cover;
 }
 
-/* 2. Contenedor de Video */
-.video-box {
-    margin-bottom: 20px;
-    border: 2px solid #fff;
-    box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
+/* 3. Header Transparente */
+.transparent-header {
+    background: rgba(255, 107, 157, 0.8); /* Rosa semi-transparente */
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(5px); /* Efecto de vidrio esmerilado */
 }
 
-/* 3. Texto Legible sobre el GIF */
-.carta-text {
+/* 4. Contenido de Altura Completa */
+.full-height-content {
+    max-height: none !important;
+    height: calc(100% - 50px); /* Resta la altura del header */
+    padding: 20px;
+}
+
+/* 5. Contenedor de Video Transparente */
+.transparent-video-box {
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
+    background: transparent;
+}
+
+/* 6. Texto Legible sobre el GIF (Cuadro Transparente) */
+.transparent-text-box {
     font-family: 'Courier New', Courier, monospace; 
-    font-size: 14px;
-    line-height: 1.6;
-    color: #000;
+    font-size: 16px; /* Un poco más grande para leer mejor */
+    line-height: 1.8;
+    color: #fff; /* Texto blanco para mejor contraste */
     
-    /* Fondo blanco semitransparente (0.85) */
-    background: rgba(255, 255, 255, 0.85);
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    /* Fondo NEGRO semitransparente para que resalte sobre el gif */
+    background: rgba(0, 0, 0, 0.6);
+    
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    backdrop-filter: blur(3px); /* Efecto de vidrio */
+    margin: 0 auto; /* Centrado */
+    max-width: 800px; /* Ancho máximo para que no sea eterno en PC */
 }
 
 /* === GRILLA DE LA CARPETA SORPRESAS === */
@@ -197,14 +231,14 @@ body {
     font-weight: bold;
 }
 
-/* Scrollbar Bonita */
+/* Scrollbar Bonita (para la carta) */
 .window-content::-webkit-scrollbar {
     width: 8px;
 }
 .window-content::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: rgba(255,255,255,0.1); 
 }
 .window-content::-webkit-scrollbar-thumb {
-    background: #ff6b9d; 
-    border: 1px solid #000;
+    background: rgba(255, 107, 157, 0.8); 
+    border-radius: 4px;
 }
