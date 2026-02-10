@@ -1,43 +1,62 @@
-// Función para iniciar la experiencia (Botón Play Together)
-function startExperience() {
-    // 1. Ocultar la pantalla de inicio
-    const intro = document.getElementById('intro-screen');
-    intro.style.display = 'none';
-    
-    // 2. Mostrar el escritorio
-    const desktop = document.getElementById('desktop-screen');
-    desktop.style.display = 'block';
+let popupMostrado = false;
 
-    // Debug: Mensaje en consola por si falla
-    console.log("Experiencia iniciada");
+function startExperience() {
+    document.getElementById('intro-screen').style.display = 'none';
+    document.getElementById('desktop-screen').style.display = 'block';
 }
 
-// Función para abrir ventanas
 function openWindow(windowId) {
-    // Cierra todas las ventanas retro (no la carta full screen aun)
-    const retroWindows = document.querySelectorAll('.retro-window');
-    retroWindows.forEach(w => w.style.display = 'none');
-    
-    // Si abrimos la carta, aseguramos que se vea (es full screen)
+    document.querySelectorAll('.retro-window:not(.full-screen-window)').forEach(w => w.style.display = 'none');
+    document.getElementById('window-' + windowId).style.display = 'flex';
+
     if (windowId === 'carta') {
-        document.getElementById('window-carta').style.display = 'flex';
-    } else {
-        // Si es otra ventana, la mostramos normal
-        document.getElementById('window-' + windowId).style.display = 'flex';
+        popupMostrado = false; 
+        document.getElementById('valentine-popup').style.display = 'none';
+        
+        // Empezar a escuchar el scroll en la carta
+        const scrollContainer = document.getElementById('carta-scroll-container');
+        if(scrollContainer) scrollContainer.addEventListener('scroll', verificarScroll);
     }
 }
 
-// Función para cerrar ventanas
 function closeWindow(windowId) {
     document.getElementById('window-' + windowId).style.display = 'none';
-
-    // DETENER VIDEO YOUTUBE AL CERRAR
+    
     if (windowId === 'carta') {
         const iframe = document.querySelector('#window-carta iframe');
-        if (iframe) {
-            const tempSrc = iframe.src;
-            iframe.src = '';
-            iframe.src = tempSrc;
-        }
+        if (iframe) { const tempSrc = iframe.src; iframe.src = ''; iframe.src = tempSrc; }
+        
+        const scrollContainer = document.getElementById('carta-scroll-container');
+        if(scrollContainer) scrollContainer.removeEventListener('scroll', verificarScroll);
     }
+}
+
+function verificarScroll() {
+    if (popupMostrado) return;
+    const container = document.getElementById('carta-scroll-container');
+    // Si llegamos cerca del final del scroll
+    if (container.scrollHeight - container.scrollTop - container.clientHeight < 50) {
+        mostrarPopupValentine();
+        popupMostrado = true;
+    }
+}
+
+function mostrarPopupValentine() {
+    document.getElementById('valentine-popup').style.display = 'flex';
+}
+
+function cerrarPopup() {
+    document.getElementById('valentine-popup').style.display = 'none';
+}
+
+function aceptarValentine() {
+    const modalContent = document.querySelector('.valentine-modal .modal-content');
+    modalContent.innerHTML = `
+        <h1 style="font-size:40px;">🎉💖🎉</h1>
+        <h3>¡SABÍA QUE DIRÍAS QUE SÍ!</h3>
+        <p>Te amo infinito.</p>
+        <button class="pixel-btn" onclick="cerrarPopup(); closeWindow('carta'); openWindow('sorpresas')">
+            Volver al escritorio
+        </button>
+    `;
 }
