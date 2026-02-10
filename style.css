@@ -126,3 +126,12 @@ body {
 .folder-item { display: flex; flex-direction: column; align-items: center; color: var(--text-color); cursor: pointer; text-decoration: none; }
 .folder-item img { width: 50px; margin-bottom: 5px; }
 .folder-item span { font-size: 9px; text-align: center; }
+
+/* ... (MANTÉN TODO TU CSS ANTERIOR IGUAL) ... */
+
+/* AGREGAR AL FINAL: */
+#btn-no {
+    transition: all 0.1s ease; /* Movimiento rápido */
+    position: relative; /* Necesario para que el JS pueda moverlo */
+    z-index: 10;
+}
