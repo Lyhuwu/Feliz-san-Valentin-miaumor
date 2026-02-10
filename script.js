@@ -1,4 +1,3 @@
-
 // 1. INICIAR EXPERIENCIA
 function startExperience() {
     document.getElementById('intro-screen').style.display = 'none';
