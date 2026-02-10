@@ -1,32 +1,210 @@
-
-// 1. INICIAR EXPERIENCIA
-function startExperience() {
-    document.getElementById('intro-screen').style.display = 'none';
-    document.getElementById('desktop-screen').style.display = 'block';
+/* === CONFIGURACIÓN GENERAL === */
+:root {
+    --bg-color: #2e2157; /* Morado oscuro */
+    --window-bg: #e0e0e0; /* Gris clásico Windows */
+    --header-bg: #ff6b9d; /* Rosa fuerte */
+    --text-color: #333;
 }
 
-// 2. ABRIR VENTANAS
-function openWindow(windowId) {
-    // Primero cerramos todas para que no se amontonen
-    const windows = document.querySelectorAll('.retro-window');
-    windows.forEach(w => w.style.display = 'none');
-    
-    // Abrimos la seleccionada
-    document.getElementById('window-' + windowId).style.display = 'flex';
+body {
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+    overflow: hidden; 
+    background-color: var(--bg-color);
+    color: white;
 }
 
-// 3. CERRAR VENTANAS
-function closeWindow(windowId) {
-    document.getElementById('window-' + windowId).style.display = 'none';
-    
-    // TRUCO: Si cerramos la carta, detenemos el video de YouTube
-    // (Recargando el iframe para que no siga sonando de fondo)
-    if (windowId === 'carta') {
-        const iframe = document.querySelector('#window-carta iframe');
-        if (iframe) {
-            const tempSrc = iframe.src;
-            iframe.src = ''; 
-            iframe.src = tempSrc;
-        }
-    }
+/* === PANTALLA DE INICIO === */
+#intro-screen {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: url('assets/fondo-pixel.gif') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    text-align: center;
+}
+
+.intro-content h1 {
+    font-size: 20px;
+    line-height: 1.5;
+    text-shadow: 4px 4px 0 #000;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 10px;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+/* BOTÓN RETRO */
+.pixel-btn {
+    background: #ff6b9d;
+    border: 4px solid #fff;
+    color: white;
+    padding: 15px 20px;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 6px 6px 0 #000;
+    transition: transform 0.1s;
+}
+
+.pixel-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 2px 2px 0 #000;
+}
+
+/* === ESCRITORIO === */
+#desktop-screen {
+    width: 100vw; height: 100vh;
+    background: url('assets/fondo-escritorio.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.icons-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100px;
+}
+
+.desktop-icon {
+    text-align: center;
+    cursor: pointer;
+    width: 80px;
+}
+
+.desktop-icon img {
+    width: 50px;
+    margin-bottom: 5px;
+    filter: drop-shadow(2px 2px 0px #000); 
+}
+
+.desktop-icon span {
+    font-size: 10px;
+    background: rgba(0,0,0,0.5);
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+/* === VENTANAS FLOTANTES === */
+.retro-window {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
+    background: var(--window-bg);
+    border: 2px solid #000;
+    box-shadow: 8px 8px 0 #000;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.window-header {
+    background: var(--header-bg);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #000;
+    color: white;
+}
+
+.close-btn {
+    background: #ff3333;
+    border: 2px solid #fff;
+    color: white;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 #000;
+}
+
+.window-content {
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto; /* Permite scroll si el contenido es largo */
+}
+
+/* === ESTILOS CARTA Y VIDEO === */
+.video-box {
+    margin-bottom: 20px;
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0px #ccc;
+    background: #000;
+}
+
+.play-hint {
+    text-align: center;
+    font-size: 10px;
+    margin-top: 5px;
+    color: #666;
+    font-style: italic;
+}
+
+.carta-text {
+    /* Fuente tipo máquina de escribir para lectura fácil */
+    font-family: 'Courier New', Courier, monospace; 
+    font-size: 14px;
+    line-height: 1.6;
+    color: #000;
+    text-align: justify;
+    padding-right: 5px;
+}
+
+/* === ESTILOS SORPRESAS (GRILLA) === */
+.folder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 10px;
+}
+
+.folder-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.folder-item:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+}
+
+.folder-item img {
+    width: 50px;
+    margin-bottom: 8px;
+}
+
+.folder-item span {
+    font-size: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Scrollbar Bonita */
+.window-content::-webkit-scrollbar {
+    width: 8px;
+}
+.window-content::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+.window-content::-webkit-scrollbar-thumb {
+    background: #ff6b9d; 
+    border: 1px solid #000;
 }
