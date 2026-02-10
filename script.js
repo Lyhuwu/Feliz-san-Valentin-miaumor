@@ -19,7 +19,6 @@ function closeWindow(windowId) {
     document.getElementById('window-' + windowId).style.display = 'none';
     
     // TRUCO: Si cerramos la carta, detenemos el video de YouTube
-    // (Recargando el iframe para que no siga sonando de fondo)
     if (windowId === 'carta') {
         const iframe = document.querySelector('#window-carta iframe');
         if (iframe) {
