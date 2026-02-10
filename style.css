@@ -9,7 +9,7 @@
 body {
     margin: 0; font-family: 'Press Start 2P', cursive;
     overflow: hidden; background-color: var(--bg-color); color: white;
-    touch-action: manipulation;
+    touch-action: manipulation; /* Mejora la respuesta táctil */
 }
 
 /* PORTADA */
@@ -88,29 +88,36 @@ body {
 }
 .carta-text { font-family: 'Courier New', Courier, monospace; font-size: 15px; line-height: 1.6; color: #fff; text-align: justify; }
 
-/* POPUP - ARREGLADO PARA QUE SE VEA SIEMPRE */
+/* === ARREGLO DEL POPUP PARA MÓVIL === */
+
+/* 1. El Fondo Oscuro (Contenedor) */
 .valentine-modal {
-    position: fixed; /* OBLIGATORIO */
-    top: 0; 
-    left: 0; 
-    width: 100vw; 
-    height: 100vh;
-    background: rgba(0,0,0,0.8); 
-    z-index: 99999; /* CAPA SUPERIOR */
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9); /* Fondo oscuro */
+    z-index: 2147483647; /* ENCIMA DE TODO */
+    display: flex;
+    align-items: center; justify-content: center;
+    padding: 20px; box-sizing: border-box;
 }
-.valentine-modal .modal-content {
-    position: relative; top: auto; left: auto; transform: none;
-    text-align: center; padding: 30px 20px; background: #fff0f5;
-    border: 3px solid #ff6b9d; box-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+
+/* 2. La Cajita del Mensaje */
+.popup-box {
+    background: #fff0f5;
+    border: 4px solid #ff6b9d;
+    box-shadow: 0 0 25px rgba(255, 107, 157, 0.8);
+    color: #333;
+    padding: 30px 20px;
+    text-align: center;
+    max-width: 90%;
+    width: 350px;
     animation: aparecer 0.3s ease-out;
 }
+
 @keyframes aparecer { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-.valentine-modal h3 { color: var(--header-bg); margin: 20px 0; font-size: 16px; line-height: 1.4; }
-.modal-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
+.popup-box h3 { font-size: 14px; line-height: 1.6; margin: 20px 0; color: #ff6b9d; }
+.modal-buttons { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
 .yes-btn { background-color: #ff6b9d !important; font-size: 12px !important; }
 .no-btn { background-color: #999 !important; border-color: #ccc !important; font-size: 10px !important;}
 
