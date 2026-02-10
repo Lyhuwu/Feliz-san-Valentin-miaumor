@@ -25,6 +25,7 @@
                 <img src="assets/icon-folder.png" alt="Sorpresas">
                 <span>Mis Cosas ❤️</span>
             </div>
+            
             <div class="pixel-bubble">
                 <p>Hola mi corazón, esto es para ti con mucho amor, ¡que disfrutes! 💌</p>
             </div>
@@ -69,29 +70,16 @@
                     <br>
                     <p>Hoy quiero pausar el tiempo...</p>
                     <br>
-                    <p>(ESCRIBE TU CARTA LARGA AQUÍ)</p>
+                    <p>(ESCRIBE AQUÍ TU CARTA LARGA...)</p>
                     <br>
                     <p>Te amo, siempre.</p>
                     <br><br>
                     
-                    <div style="text-align: center;">
+                    <div style="text-align: center; margin-bottom: 50px;">
                         <button class="pixel-btn" onclick="mostrarPopupValentine()">Tengo una pregunta...</button>
                     </div>
                 </div>
-
             </div>
-            
-            <div id="valentine-popup" class="valentine-modal" style="display: none;">
-                <div class="modal-content retro-window">
-                    <p>Después de leer todo esto...</p>
-                    <h3>¿Quieres ser mi San Valentín? 💖</h3>
-                    <div class="modal-buttons">
-                        <button class="pixel-btn yes-btn" onclick="aceptarValentine()">¡SÍ, QUIERO!</button>
-                        <button class="pixel-btn no-btn" onclick="cerrarPopup()">Mmm, no sé</button>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
         <div id="window-playlist" class="retro-window" style="display: none;">
@@ -105,6 +93,18 @@
         </div>
 
     </section>
+
+    <div id="valentine-popup" class="valentine-modal" style="display: none;">
+        <div class="modal-content retro-window">
+            <p>Después de leer todo esto...</p>
+            <h3>¿Quieres ser mi San Valentín? 💖</h3>
+            <div class="modal-buttons">
+                <button class="pixel-btn yes-btn" onclick="aceptarValentine()">¡SÍ, QUIERO!</button>
+                <button class="pixel-btn no-btn" onclick="cerrarPopup()">Mmm, no sé</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
