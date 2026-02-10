@@ -8,9 +8,7 @@ function startExperience() {
 function openWindow(windowId) {
     document.querySelectorAll('.retro-window:not(.full-screen-window)').forEach(w => w.style.display = 'none');
     document.getElementById('window-' + windowId).style.display = 'flex';
-
     if (windowId === 'carta') {
-        // Aseguramos que el popup esté cerrado al entrar
         document.getElementById('valentine-popup').style.display = 'none';
     }
 }
@@ -28,8 +26,15 @@ function closeWindow(windowId) {
 
 function mostrarPopupValentine() {
     const popup = document.getElementById('valentine-popup');
-    // Forzamos la visibilidad
     popup.style.display = 'flex';
+
+    // RESETEAR EL ESTADO: Siempre mostrar la pregunta primero
+    document.getElementById('step-pregunta').style.display = 'block';
+    document.getElementById('step-respuesta').style.display = 'none';
+
+    // Regresar el botón "No" a su lugar original por si se movió antes
+    const btnNo = document.getElementById('btn-no');
+    btnNo.style.position = 'static'; 
 }
 
 function cerrarPopup() {
@@ -37,16 +42,26 @@ function cerrarPopup() {
 }
 
 function aceptarValentine() {
-    // Buscamos el contenido del popup para cambiar el mensaje
-    const caja = document.querySelector('.popup-box');
+    // Ocultar pregunta, mostrar celebración
+    document.getElementById('step-pregunta').style.display = 'none';
+    document.getElementById('step-respuesta').style.display = 'block';
+}
+
+// === FUNCIÓN DEL BOTÓN ESCURRIDIZO (MÓVIL Y PC) ===
+function moverBoton() {
+    const btnNo = document.getElementById('btn-no');
     
-    caja.innerHTML = `
-        <h1 style="font-size:30px; margin:20px 0;">🎉🥰🎉</h1>
-        <h3 style="color:#ff6b9d;">¡SABÍA QUE DIRÍAS QUE SÍ!</h3>
-        <p>Te amo infinito.</p>
-        <br>
-        <button class="pixel-btn" onclick="cerrarPopup(); closeWindow('carta'); openWindow('sorpresas')">
-            Volver al escritorio
-        </button>
-    `;
+    // Ancho y alto de la pantalla
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // Calcular nueva posición aleatoria
+    // Restamos 100px para que no se salga de la pantalla
+    const newX = Math.random() * (width - 100);
+    const newY = Math.random() * (height - 100);
+
+    // Aplicar posición fija para que "flote" libremente
+    btnNo.style.position = 'fixed';
+    btnNo.style.left = newX + 'px';
+    btnNo.style.top = newY + 'px';
 }
