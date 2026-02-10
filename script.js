@@ -12,7 +12,7 @@ function openWindow(windowId) {
     // Mostrar la ventana elegida
     document.getElementById('window-' + windowId).style.display = 'flex';
 
-    // RESET: Si abrimos la carta, aseguramos que el popup NO se vea aún
+    // RESET: Asegurarnos de que el popup no estorbe si se vuelve a abrir la carta
     if (windowId === 'carta') {
         document.getElementById('valentine-popup').style.display = 'none';
     }
@@ -31,17 +31,16 @@ function closeWindow(windowId) {
 
 // === LÓGICA DEL POPUP ===
 
-// 1. Mostrar la pregunta (solo al dar clic en el botón de la carta)
 function mostrarPopupValentine() {
-    document.getElementById('valentine-popup').style.display = 'flex';
+    // Esto hace visible el popup
+    const popup = document.getElementById('valentine-popup');
+    popup.style.display = 'flex';
 }
 
-// 2. Cerrar si dice que no
 function cerrarPopup() {
     document.getElementById('valentine-popup').style.display = 'none';
 }
 
-// 3. Celebrar si dice que sí
 function aceptarValentine() {
     const modalContent = document.querySelector('.valentine-modal .modal-content');
     modalContent.innerHTML = `
