@@ -88,12 +88,18 @@ body {
 }
 .carta-text { font-family: 'Courier New', Courier, monospace; font-size: 15px; line-height: 1.6; color: #fff; text-align: justify; }
 
-/* POPUP (ENCIMA DE TODO) */
+/* POPUP - ARREGLADO PARA QUE SE VEA SIEMPRE */
 .valentine-modal {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(0,0,0,0.8); /* Fondo oscuro */
-    z-index: 99999; /* CAPA SUPERIOR: Visible solo cuando display es flex */
-    display: flex; align-items: center; justify-content: center;
+    position: fixed; /* OBLIGATORIO */
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    background: rgba(0,0,0,0.8); 
+    z-index: 99999; /* CAPA SUPERIOR */
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
 }
 .valentine-modal .modal-content {
     position: relative; top: auto; left: auto; transform: none;
