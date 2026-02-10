@@ -1,47 +1,35 @@
-let popupMostrado = false;
-
 function startExperience() {
     document.getElementById('intro-screen').style.display = 'none';
     document.getElementById('desktop-screen').style.display = 'block';
 }
 
 function openWindow(windowId) {
+    // Cerrar otras ventanas normales
     document.querySelectorAll('.retro-window:not(.full-screen-window)').forEach(w => w.style.display = 'none');
+    
+    // Abrir la ventana deseada
     document.getElementById('window-' + windowId).style.display = 'flex';
 
+    // Si abrimos la carta, aseguramos que el popup esté cerrado al inicio
     if (windowId === 'carta') {
-        popupMostrado = false; 
         document.getElementById('valentine-popup').style.display = 'none';
-        
-        // Empezar a escuchar el scroll en la carta
-        const scrollContainer = document.getElementById('carta-scroll-container');
-        if(scrollContainer) scrollContainer.addEventListener('scroll', verificarScroll);
     }
 }
 
 function closeWindow(windowId) {
     document.getElementById('window-' + windowId).style.display = 'none';
     
+    // Detener video al cerrar carta
     if (windowId === 'carta') {
         const iframe = document.querySelector('#window-carta iframe');
         if (iframe) { const tempSrc = iframe.src; iframe.src = ''; iframe.src = tempSrc; }
-        
-        const scrollContainer = document.getElementById('carta-scroll-container');
-        if(scrollContainer) scrollContainer.removeEventListener('scroll', verificarScroll);
     }
 }
 
-function verificarScroll() {
-    if (popupMostrado) return;
-    const container = document.getElementById('carta-scroll-container');
-    // Si llegamos cerca del final del scroll
-    if (container.scrollHeight - container.scrollTop - container.clientHeight < 50) {
-        mostrarPopupValentine();
-        popupMostrado = true;
-    }
-}
+// === FUNCIONES DEL POPUP ===
 
 function mostrarPopupValentine() {
+    // Esto hace visible el popup encima de la carta
     document.getElementById('valentine-popup').style.display = 'flex';
 }
 
@@ -59,4 +47,5 @@ function aceptarValentine() {
             Volver al escritorio
         </button>
     `;
+    // Opcional: Aquí podrías lanzar confeti si quisieras
 }
