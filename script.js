@@ -1,42 +1,47 @@
+// Pantalla de inicio
 function startExperience() {
     document.getElementById('intro-screen').style.display = 'none';
     document.getElementById('desktop-screen').style.display = 'block';
 }
 
+// Abrir ventanas
 function openWindow(windowId) {
     // Cerrar otras ventanas normales
     document.querySelectorAll('.retro-window:not(.full-screen-window)').forEach(w => w.style.display = 'none');
     
-    // Abrir la ventana deseada
+    // Mostrar la ventana elegida
     document.getElementById('window-' + windowId).style.display = 'flex';
 
-    // Si abrimos la carta, aseguramos que el popup esté cerrado al inicio
+    // RESET: Si abrimos la carta, aseguramos que el popup NO se vea aún
     if (windowId === 'carta') {
         document.getElementById('valentine-popup').style.display = 'none';
     }
 }
 
+// Cerrar ventanas
 function closeWindow(windowId) {
     document.getElementById('window-' + windowId).style.display = 'none';
     
-    // Detener video al cerrar carta
+    // Si cerramos la carta, detener el video
     if (windowId === 'carta') {
         const iframe = document.querySelector('#window-carta iframe');
         if (iframe) { const tempSrc = iframe.src; iframe.src = ''; iframe.src = tempSrc; }
     }
 }
 
-// === FUNCIONES DEL POPUP ===
+// === LÓGICA DEL POPUP ===
 
+// 1. Mostrar la pregunta (solo al dar clic en el botón de la carta)
 function mostrarPopupValentine() {
-    // Esto hace visible el popup encima de la carta
     document.getElementById('valentine-popup').style.display = 'flex';
 }
 
+// 2. Cerrar si dice que no
 function cerrarPopup() {
     document.getElementById('valentine-popup').style.display = 'none';
 }
 
+// 3. Celebrar si dice que sí
 function aceptarValentine() {
     const modalContent = document.querySelector('.valentine-modal .modal-content');
     modalContent.innerHTML = `
@@ -47,5 +52,4 @@ function aceptarValentine() {
             Volver al escritorio
         </button>
     `;
-    // Opcional: Aquí podrías lanzar confeti si quisieras
 }
