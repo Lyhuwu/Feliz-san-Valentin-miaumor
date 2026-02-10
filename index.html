@@ -23,29 +23,59 @@
     <section id="desktop-screen" style="display: none;">
         
         <div class="icons-container">
-            <div class="desktop-icon" onclick="openWindow('carta')">
-                <img src="assets/icon-heart.png" alt="Carta">
-                <span>Nuestra Historia</span>
-            </div>
-            
-            <div class="desktop-icon" onclick="openWindow('playlist')">
-                <img src="assets/icon-music.png" alt="Música">
-                <span>Songs 4 You</span>
-            </div>
-
             <div class="desktop-icon" onclick="openWindow('sorpresas')">
                 <img src="assets/icon-folder.png" alt="Sorpresas">
-                <span>Sorpresas</span>
+                <span>Mis Cosas ❤️</span>
+            </div>
+        </div>
+
+        <div id="window-sorpresas" class="retro-window" style="display: none;">
+            <div class="window-header">
+                <span>system_files</span>
+                <button class="close-btn" onclick="closeWindow('sorpresas')">X</button>
+            </div>
+            
+            <div class="window-content">
+                <p style="text-align:center; margin-bottom:20px;">Explora mi corazón...</p>
+                
+                <div class="folder-grid">
+                    
+                    <div class="folder-item" onclick="openWindow('carta')">
+                        <img src="assets/icon-heart.png" alt="Carta">
+                        <span>Nuestra Historia</span>
+                    </div>
+
+                    <div class="folder-item" onclick="openWindow('playlist')">
+                        <img src="assets/icon-music.png" alt="Música">
+                        <span>Playlist</span>
+                    </div>
+
+                    <a href="https://TU_USUARIO.github.io/fortune-teller" target="_blank" class="folder-item">
+                        <img src="assets/icon-folder-yellow.png" alt="Juego">
+                        <span>Fortune Teller</span>
+                    </a>
+
+                    <a href="https://TU_USUARIO.github.io/galaxy" target="_blank" class="folder-item">
+                        <img src="assets/icon-folder-yellow.png" alt="Galaxia">
+                        <span>Galaxy</span>
+                    </a>
+
+                    <a href="https://TU_USUARIO.github.io/open-when" target="_blank" class="folder-item">
+                        <img src="assets/icon-folder-yellow.png" alt="Cartas">
+                        <span>Open When</span>
+                    </a>
+                </div>
+                <p style="text-align:center; font-size:9px; margin-top:20px; color:#666;">Love unfolds one click at a time</p>
             </div>
         </div>
 
         <div id="window-carta" class="retro-window" style="display: none;">
             <div class="window-header">
                 <span>carta_para_sofi.txt</span>
-                <button class="close-btn" onclick="closeWindow('carta')">X</button>
+                <button class="close-btn" onclick="closeWindow('carta'); openWindow('sorpresas')">X</button>
             </div>
             
-            <div class="window-content carta-scroll">
+            <div class="window-content carta-scroll gif-bg">
                 
                 <div class="video-box">
                     <iframe width="100%" height="200" 
@@ -54,17 +84,18 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                     </iframe>
-                    <p class="play-hint">Dale play ▶️ para leer con música de fondo</p>
                 </div>
 
                 <div class="carta-text">
                     <p>Mi amor,</p>
                     <br>
-                    <p>Te escribo esto porque a veces las palabras se me quedan cortas cuando hablamos...</p>
+                    <p>Hoy quiero pausar el tiempo...</p>
                     <br>
-                    <p>Cada kilómetro que nos separa se siente menos pesado cuando pienso en tu sonrisa.</p>
+                    <p>Recuerdo cada detalle de nosotros...</p>
                     <br>
-                    <p>Recuerdo perfectamente el día que... (Aquí escribe todo lo que quieras, la ventana tendrá scroll automático).</p>
+                    <p>Aunque estemos lejos, este código nos mantiene conectados.</p>
+                    <br>
+                    <p>(Escribe aquí todo lo que quieras, la ventana tendrá scroll automático).</p>
                     <br>
                     <p>Te amo, siempre.</p>
                 </div>
@@ -74,45 +105,10 @@
         <div id="window-playlist" class="retro-window" style="display: none;">
             <div class="window-header">
                 <span>our_vibes.exe</span>
-                <button class="close-btn" onclick="closeWindow('playlist')">X</button>
+                <button class="close-btn" onclick="closeWindow('playlist'); openWindow('sorpresas')">X</button>
             </div>
             <div class="window-content">
                 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            </div>
-        </div>
-
-        <div id="window-sorpresas" class="retro-window" style="display: none;">
-            <div class="window-header">
-                <span>system_surprises</span>
-                <button class="close-btn" onclick="closeWindow('sorpresas')">X</button>
-            </div>
-            
-            <div class="window-content">
-                <p style="text-align:center; margin-bottom:20px;">Elige una aventura...</p>
-                
-                <div class="folder-grid">
-                    
-                    <a href="https://TU_USUARIO.github.io/fortune-teller" target="_blank" class="folder-item">
-                        <img src="assets/icon-folder-yellow.png" alt="Folder">
-                        <span>Fortune Teller</span>
-                    </a>
-
-                    <a href="https://TU_USUARIO.github.io/galaxy" target="_blank" class="folder-item">
-                        <img src="assets/icon-folder-yellow.png" alt="Folder">
-                        <span>Galaxy</span>
-                    </a>
-
-                    <a href="https://TU_USUARIO.github.io/open-when" target="_blank" class="folder-item">
-                        <img src="assets/icon-folder-yellow.png" alt="Folder">
-                        <span>Open When</span>
-                    </a>
-
-                    <a href="#" class="folder-item">
-                        <img src="assets/icon-folder-yellow.png" alt="Folder">
-                        <span>Secret File</span>
-                    </a>
-                </div>
-                <p style="text-align:center; font-size:9px; margin-top:20px; color:#666;">Love unfolds one click at a time</p>
             </div>
         </div>
 
