@@ -1,7 +1,7 @@
 /* === CONFIGURACIÓN GENERAL === */
 :root {
     --bg-color: #2e2157; /* Morado oscuro */
-    --window-bg: #e0e0e0; /* Gris clásico Windows */
+    --window-bg: #e0e0e0; /* Gris Windows 95 */
     --header-bg: #ff6b9d; /* Rosa fuerte */
     --text-color: #333;
 }
@@ -69,20 +69,16 @@ body {
 
 .icons-container {
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    width: 100px;
 }
 
 .desktop-icon {
     text-align: center;
     cursor: pointer;
-    width: 80px;
+    width: 100px;
 }
 
 .desktop-icon img {
-    width: 50px;
+    width: 60px;
     margin-bottom: 5px;
     filter: drop-shadow(2px 2px 0px #000); 
 }
@@ -132,37 +128,41 @@ body {
 
 .window-content {
     padding: 20px;
-    max-height: 400px;
-    overflow-y: auto; /* Permite scroll si el contenido es largo */
+    max-height: 450px;
+    overflow-y: auto; 
 }
 
-/* === ESTILOS CARTA Y VIDEO === */
+/* === ESTILOS ESPECIALES PARA LA CARTA === */
+
+/* 1. Fondo GIF animado */
+.gif-bg {
+    /* CAMBIA ESTO POR TU GIF DE ESTRELLAS/CORAZONES */
+    background: url('assets/fondo-carta.gif') no-repeat center center;
+    background-size: cover;
+}
+
+/* 2. Contenedor de Video */
 .video-box {
     margin-bottom: 20px;
-    border: 2px solid #000;
-    box-shadow: 4px 4px 0px #ccc;
-    background: #000;
+    border: 2px solid #fff;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
 }
 
-.play-hint {
-    text-align: center;
-    font-size: 10px;
-    margin-top: 5px;
-    color: #666;
-    font-style: italic;
-}
-
+/* 3. Texto Legible sobre el GIF */
 .carta-text {
-    /* Fuente tipo máquina de escribir para lectura fácil */
     font-family: 'Courier New', Courier, monospace; 
     font-size: 14px;
     line-height: 1.6;
     color: #000;
-    text-align: justify;
-    padding-right: 5px;
+    
+    /* Fondo blanco semitransparente (0.85) */
+    background: rgba(255, 255, 255, 0.85);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* === ESTILOS SORPRESAS (GRILLA) === */
+/* === GRILLA DE LA CARPETA SORPRESAS === */
 .folder-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
