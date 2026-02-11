@@ -45,15 +45,22 @@
             <div class="window-content">
                 <p style="text-align:center; margin-bottom:20px;">Nuestros recuerdos...</p>
                 <div class="folder-grid">
+                    
                     <div class="folder-item" onclick="openWindow('carta')">
-                        <img src="assets/icon-heart.gif" alt="Carta"><span>Nuestra Historia</span>
+                        <img src="assets/icon-heart.gif" alt="Carta">
+                        <span>Nuestra Historia</span>
                     </div>
+                    
                     <div class="folder-item" onclick="openWindow('playlist')">
-                        <img src="assets/icon-music.gif" alt="Música"><span>Playlist</span>
+                        <img src="assets/icon-music.gif" alt="Música">
+                        <span>Playlist</span>
                     </div>
+                    
                     <a href="https://TU_USUARIO.github.io/galaxy" target="_blank" class="folder-item">
-                        <img src="assets/mi-universo.gif" alt="Galaxia"><span>Galaxy</span>
+                        <img src="assets/mi-universo.gif" alt="Galaxia">
+                        <span>Galaxy</span>
                     </a>
+
                 </div>
             </div>
         </div>
@@ -68,11 +75,13 @@
                 <div class="folder-grid">
                     
                     <a href="https://TU_USUARIO.github.io/fortune-teller" target="_blank" class="folder-item">
-                        <img src="assets/suerte.gif" alt="Juego"><span>Fortune Teller</span>
+                        <img src="assets/suerte.gif" alt="Juego">
+                        <span>Fortune Teller</span>
                     </a>
 
                     <a href="https://LINK_DE_LOS_MONITOS" target="_blank" class="folder-item">
-                        <img src="assets/icon-monkey.gif" alt="Monitos"><span>Nuestro Viaje</span>
+                        <img src="assets/icon-monkey.gif" alt="Monitos">
+                        <span>Nuestro Viaje</span>
                     </a>
 
                 </div>
@@ -101,13 +110,20 @@
             </div>
         </div>
 
-        <div id="window-playlist" class="retro-window" style="display: none;">
-            <div class="window-header">
-                <span>our_vibes.exe</span>
-                <button class="close-btn" onclick="closeWindow('playlist'); openWindow('sorpresas')">X</button>
-            </div>
-            <div class="window-content">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/TU_ID_AQUI" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div id="window-playlist" class="full-screen-window gif-bg" style="display: none;">
+            
+            <button class="pretty-close-btn" onclick="closeWindow('playlist'); openWindow('sorpresas')">X</button>
+            
+            <div class="full-screen-content" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+                
+                <div class="transparent-box" style="width: 90%; max-width: 400px; text-align: center;">
+                    <h2 style="color: #ff6b9d; text-shadow: 2px 2px 0 #000; margin-bottom: 20px; font-size:14px;">
+                        OUR VIBES 🎧
+                    </h2>
+                    
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/TU_ID_AQUI" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                
+                </div>
             </div>
         </div>
 
@@ -115,7 +131,6 @@
 
     <div id="valentine-popup" class="valentine-modal" style="display: none;">
         <div class="popup-box">
-            
             <div id="step-pregunta">
                 <p>Después de leer todo esto...</p>
                 <h3>¿Quieres ser mi San Valentín? 💖</h3>
@@ -124,7 +139,6 @@
                     <button id="btn-no" class="pixel-btn no-btn" onmouseover="moverBoton()" ontouchstart="moverBoton()">Mmm, no sé</button>
                 </div>
             </div>
-
             <div id="step-respuesta" style="display: none;">
                 <h1 style="font-size:30px; margin:20px 0;">🎉🥰🎉</h1>
                 <h3 style="color:#ff6b9d;">¡SABÍA QUE DIRÍAS QUE SÍ!</h3>
@@ -134,7 +148,6 @@
                     Volver al escritorio
                 </button>
             </div>
-
         </div>
     </div>
 
