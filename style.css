@@ -28,7 +28,7 @@ body {
 
 /* ESCRITORIO */
 #desktop-screen {
-    width: 100vw; height: 100vh; background: url('assets/fondo-escritorio.jpg') no-repeat center center;
+    width: 100vw; height: 100vh; background: url('assets/fondo-carta.gif') no-repeat center center;
     background-size: cover; position: relative;
 }
 .icons-container { padding: 20px; display: flex; align-items: flex-start; gap: 15px; }
